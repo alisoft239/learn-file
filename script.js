@@ -10,11 +10,35 @@
 - Array.every(CallbackFunc(Element, Index, Array), This Argument)
 - Spread Operator => ...Iterable 
 */
+/*
+i => كابتل او اسمول
+g => globel
 
+(x|y) 
+[0-9]
+[^0-9]
+[a-z]
+[^a-z]
+[A-Z]
+[^A-Z]
+[abc]
+[^abc]
+. => all character - Array
+\w => words [a-z A-Z 0-9]
+\W => not words
+\d => digits
+\D => not digits
+\s => whitespace
+\S => not whitespace
+\b x => frist word
+x \b => end word
+n+ => one or more 
+n* => zero or more
+n? => zero or one last char
 
-let a = "os3 os5 of5os of0os"
+*/
 
-let re = /of[0-4]os/g
-console.log(a.match(re))
-
-
+let urls = "https://google.com http://www.website.net https web.com"; // http + https
+let re = /(https?:\/\/\w+.)?\w+.(com|net)/g 
+let x = urls.match(re)
+console.log(x)

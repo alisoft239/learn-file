@@ -36,15 +36,6 @@ console.log(myString.match(regex));
   [0-9] => 0 To 9
   [^0-9] => Any Character Not 0 To 9
   Practice
-
-  - Part 2
-  [a-z]
-  [^a-z]
-  [A-Z]
-  [^A-Z]
-  [abc]
-  [^abc]
-
 */
 
 let tld = "Com Net Org Info Code Io";
@@ -74,12 +65,6 @@ console.log(practice.match(practiceRe));
   Regular Expression
 
   Ranges
-
-  - Part 1
-  (X|Y) => X Or Y
-  [0-9] => 0 To 9
-  [^0-9] => Any Character Not 0 To 9
-  Practice
 
   - Part 2
   [a-z]
@@ -176,3 +161,20 @@ let urls = "https://google.com http://www.website.net web.com"; // http + https
 let urlsRe = /(https?:\/\/)?(www.)?\w+.\w+/ig;
 console.log(urls.match(urlsRe));
 
+// #-----------------------------------141-----------
+
+
+/*
+  Regular Expression
+
+  Quantifiers
+  n{x}   => Number of
+  n{x,y} => Range
+  n{x,}  => At Least x
+*/
+
+let serials = "S100S S3000S S50000S S950000S";
+
+console.log(serials.match(/s\d{3}s/ig)); // S[Three Number]S
+console.log(serials.match(/s\d{4,5}s/ig)); // S[Four Or Five Number]S
+console.log(serials.match(/s\d{4,}s/ig)); // S[At Least Four]S
