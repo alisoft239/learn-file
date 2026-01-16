@@ -133,3 +133,46 @@ let valid = /\w@\w.(com|net)/g;
 console.log(email.match(dot));
 console.log(email.match(word));
 console.log(email.match(valid));
+
+// #-----------------------------------139-----------
+/*
+  Regular Expression
+  Character Classes
+  \b => matches at the beginning or end of a word.
+  \B => matches NOT at the beginning/end of a word.
+
+  Test Method
+  pattern.test(input)
+*/
+
+let names = "Sayed 1Spam 2Spam 3Spam Spam4 Spam5 Osama Ahmed Aspamo";
+let re = /(\bspam|spam\b)/ig;
+console.log(names.match(re));
+
+console.log(re.test(names));
+console.log(/(\bspam|spam\b)/ig.test("Osama"));
+console.log(/(\bspam|spam\b)/ig.test("1Spam"));
+console.log(/(\bspam|spam\b)/ig.test("Spam1"));
+// #-----------------------------------140-----------
+/*
+  Regular Expression
+
+  Quantifiers
+  n+    => One Or More
+  n*    => zero or more
+  n?    => zero or one
+*/
+
+let mails = "o@nn.sa osama@gmail.com elzero@gmail.net osama@mail.ru"; // All Emails
+// let mailsRe = /\w+@\w+.(com|net)/ig;
+let mailsRe = /\w+@\w+.\w+/ig;
+console.log(mails.match(mailsRe));
+
+let nums = "0110 10 150 05120 0560 350 00"; // 0 Numbers Or No 0
+let numsRe = /0\d*0/ig;
+console.log(nums.match(numsRe));
+
+let urls = "https://google.com http://www.website.net web.com"; // http + https
+let urlsRe = /(https?:\/\/)?(www.)?\w+.\w+/ig;
+console.log(urls.match(urlsRe));
+
