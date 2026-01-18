@@ -11,19 +11,21 @@
 - Spread Operator => ...Iterable 
 */
 /*
-i => كابتل او اسمول
-g => globel
 
-(x|y) 
-[0-9]
-[^0-9]
-[a-z]
+// => every think
+i => كابتل او اسمول  ali=Ali 
+g => globel    ex:all index ali on index 0 - Ali on index 4
+
+(x|y) ex: (ali|ayman|mohammd)
+[0-9] 
+[^0-9] 
+[a-z] 
 [^a-z]
 [A-Z]
 [^A-Z]
-[abc]
+[abc] 
 [^abc]
-. => all character - Array
+. => all character => Array 
 \w => words [a-z A-Z 0-9]
 \W => not words
 \d => digits
@@ -32,87 +34,60 @@ g => globel
 \S => not whitespace
 \b x => frist word
 x \b => end word
-n+ => one or more 
-n* => zero or more
-n? => zero or one last char
-n{x}   => Number of | بتحدد كام رقم
+n+ => one or more  \w+ a - al - ali 
+n* => zero or more \w* "" - ali 
+n? => zero or one last char   - https? https http 
+n{x}   => Number of | بتحدد كام رقم 
 n{x,y} => Range
 n{x,}  => At Least x
+- replace
+- replaceAll
+^n => عشان لو عايز تبدا بحاجه معينه
+n$ => نهاية الفحص
 */
 
-// let urls = "s22s s555s s66666s s8888888888s"; // http + https
-// let re = /s\d{5,}s/g 
-// let x = urls.match(re)
-// console.log(x)
-
-
-
-
-
-
-// function arrayDiff(a, b) {
-//   if(b.length==0 || a.length==0)
-//     return a;
-//   for(let i =0;i<a.length;i++){
-//     for(let j=0;j<b.length;j++){
-//       if(a[i]==b[j]){
-//         a.splice(i,1);
-//         i--;
-//       }
-//     }
-//   }
-//   return a;
-// }
-
-
-
-// function arrayDiff(a, b) {
-// if(a.length === 0)
-// {
-//   return a
-// }
-//   const setA = new Set(a);
-//   const setB = new Set(b);
-
-//   return [
-//     ...a.filter(x => !setB.has(x)),
-//     ...b.filter(x => !setA.has(x))
-//   ];
-// }
-
-
-// ------------------------------------------
 /*
--1
-0
-3
-
-4
-16
-25
-26
+  Regular Expression
+  - Input Form Validation Practice
 */
 
-var isSquare = function(n){
-
-    for(let i = 0; i <= n; i++)
-    {
-      k = i * i
-      if(k === n)
-      {
-        return true
-      }
-    }
-
-  return false; // fix me
-}
+// document.getElementById("register").onsubmit = function () {
+//   let phoneInput = document.getElementById("phone").value;
 
 
-let i = 3
-let a = 3
+//   // let phoneRe = /\(\d{4}\)\s\d{3}-\d{4}/; // (1234) 567-8910
+// const phoneRe = /^1[3-9]\d{9}$/;
 
-let k = a * i
+//   let validationResult = phoneRe.test(phoneInput);
+  
+//   return validationResult;
+// }
 
-console.log(isSquare(24))
-// console.log(k)
+
+
+/*
+  Regular Expression
+  - Challenge
+*/
+
+
+let url1 = 'elzero.org';
+let url2 = 'http://elzero.org';
+let url3 = 'https://elzero.org';
+let url4 = 'https://wwt.e-rw.elzero.org';
+let url5 = 'https://www.elzero.org:5000/';
+let url6 = 'https://www.elzero.org:8080/articles.php?id=100&cat=topics';
+
+
+
+let re = /^(https?:\/\/)* ((([a-zA-Z0-9])(\.|-)+) *([a-zA-Z0-9]))+(:\d{2,5})*\/*.*$/g;
+
+console.log(url1.match(re));
+console.log(url2.match(re));
+console.log(url3.match(re));
+console.log(url4.match(re));
+console.log(url5.match(re));
+console.log(url6.match(re));
+
+
 
