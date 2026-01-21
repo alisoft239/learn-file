@@ -218,3 +218,5 @@ let re = /@/ig;
 console.log(txt.replaceAll(re, "JavaScript"));
 console.log(txt.replaceAll(/@/ig, "JavaScript"));
 // #-----------------------------------143-----------
+// let rx =  /\d{4}(?=\d)/g // (?=\d) للسؤال لو هو بعديه رقم
+// replace(rx,"$&-")

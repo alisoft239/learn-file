@@ -42,6 +42,9 @@ class User {
   writeMsg() {
     return `Hello ${this.u} Your Salary Is ${this.s}`;
   }
+  get showData(){
+    return `بتخلي الدالة تستدعى كانها عنصر`
+  }
 }
 
 let userOne = new User(100, "Elzero", 5000);
@@ -70,6 +73,7 @@ class User {
     this.i = id;
     this.u = username;
     this.s = salary;
+
   }
   updateName(newName) { // To update value 
     this.u = newName;
@@ -104,7 +108,6 @@ console.log(strTwo.constructor === String);
 class User {
   // Static Property
   static count = 0;
-
   constructor(id, username, salary) {
     this.i = id;
     this.u = username;
@@ -202,7 +205,7 @@ class User {
 
 let userOne = new User(100, "Elzero", "5000 Gneh");
 
-console.log(userOne.u);
+console.log(userOne.u); // undefined
 console.log(userOne.getSalary() * 0.3);
 
 
@@ -216,3 +219,109 @@ console.log(userOne.getSalary() * 0.3);
   بس ملكش اكسيس عليه برضه إلا لو عملت هيدين انبلمنتيشن
 */
 
+/* # 156
+  Prototype آلية أو مخطط اللي بتورث الخواص لبعضها
+  - Add To Prototype Chain
+  - Extend Built In Constructors Features
+  كل البراميترز و الميزود اللي موجودة في الاوبجكت اللي اتورث منه
+  تقدر تضيف في اي اوبجكن انت وارث منه و لو اتورث الاوبجكت ده هيكون كل  اوبجكت منه له اكسيس 
+*/
+
+class User {
+  constructor(id, username) {
+    this.i = id;
+    this.u = username;
+  }
+  sayHello() {
+    return `Hello ${this.u}`;
+  }
+}
+
+let userOne = new User(100, "Elzero");
+console.log(userOne.u);
+console.log(User.prototype);
+console.log(userOne);
+
+User.prototype.sayWelcome = function () { // Add Function to prototype
+  return `Welcome ${this.u}`;
+};
+
+Object.prototype.love = "Elzero Web School"; // Add proporty to prototype
+
+String.prototype.addDotBeforeAndAfter = function (val) {  // Add Function to prototype
+  return `.${this}.`;
+};
+
+let myString = "Elzero"; 
+
+
+/* 157
+  Object Meta Data And Descriptor لو عايز تضيف بروبرتي و تتحكم فيها براحتك
+  - writable قابل للكتابة
+  - enumerable يعني ينفع تعمل انموريشن ، يعني تدخل في لوب
+  - configurable [Cannot Delete Or Reconfigure]  
+  يعني ينفع تحذفه و تعدل عليه و بنفع تعمله ريديفين - لو فالس العكس بقا
+  واي تغيير في تعريف البروبرتي هيديك Cannot redefine property
+*/
+
+const myObject = {
+  a: 1,
+  b: 2,
+};
+
+Object.defineProperty(myObject, "c", {
+  writable: false,
+  enumerable: true,
+  configurable: false,
+  value: 3,
+});
+
+// Object.defineProperty(myObject, "c", {
+//   writable: false,
+//   enumerable: true,
+//   configurable: true, <= Cannot redefine property
+//   value: 3,
+// });
+
+myObject.c = 100;
+
+console.log(delete myObject.c);
+
+for (let prop in myObject) {
+  console.log(prop, myObject[prop]);
+}
+
+console.log(myObject);
+
+
+
+/* 158
+  Object Meta Data And Descriptor
+  - Define Multiple Properties
+  - Check Descriptors
+*/
+
+const myObject = {
+  a: 1,
+  b: 2,
+};
+
+Object.defineProperties(myObject, { // لو عايز تضيف بروبرتز كتير بقا
+  c: { // تكتب اللي عايزه براحتك
+    configurable: true, 
+    value: 3,
+  },
+  d: {
+    configurable: true,
+    value: 4,
+  },
+  e: {
+    configurable: true,
+    value: 5,
+  },
+});
+
+console.log(myObject);
+
+console.log(Object.getOwnPropertyDescriptor(myObject, "d")); // تستدعي واحدة
+console.log(Object.getOwnPropertyDescriptors(myObject)); // تستدعي الجميع

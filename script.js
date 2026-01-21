@@ -117,51 +117,90 @@ n$ => نهاية الفحص
 
 // console.log(userOne.u);
 // console.log(userOne.getSalary() * 0.3);
+// -----------------------------------------------------------------------
+// Edit The Class
+// class User {
+//   #c;
+//   constructor(username, card) {
+//     let rx = /\d{4}(?=\d)/g
 
-
-
-class User  {
-  static count = 0
-  #salery
-  constructor (id, name, salery, userName) {
-    this.id = id
-    this.name = name
-    this.#salery = salery
-    this.userName = userName
-    this.info = () => {
-      return `  id: ${id}
-      Name: ${name}
-      UserName: ${userName}
-      Salery: ${salery}`
-      User.count++
-    }
-  }
-  uptadeSalery (salery){ // لو عايو تعمل تعديل لاي قيمة بيكون من خلال دالة تسمح بالتعديل
-    this.salery = salery
-  }
-getSalery(){
-    return this.#salery
-  }
-}
-
-class Admin extends User {
+//     this.u = username;
+//     this.#c = Array.from(card + "").filter((e) => {
+//   if(!isNaN(Number.parseInt(e))){return e}}).join().replaceAll(",","").replace(rx,"$&-");
   
-  constructor (id, name, salery, userName, parmitions) {
-    super (id,name,"",userName)
-    this.s = salery
-    this.p = parmitions
+// }
+//   get showData(){
+//     return `Hello Osama Your Credit Card Number Is ${this.#c}`
+//   }
+// }
+
+// // Do Not Edit Anything Below
+
+// let userOne = new User("Osama", "1234-5678-1234-5678");
+// let userTwo = new User("Ahmed", "1234567812345678");
+// let userThree = new User("Ghareeb", 1234567812345678);
+
+// console.log(userOne.showData);
+// // Hello Osama Your Credit Card Number Is 1234-5678-1234-5678
+
+// console.log(userTwo.showData);
+// // Hello Ahmed Your Credit Card Number Is 1234-5678-1234-5678
+
+// console.log(userThree.showData);
+// // Hello Ghareeb Your Credit Card Number Is 1234-5678-1234-5678
+
+// console.log(userOne.c); // Prevent Accessing To Card Property Here
+// // Undefined
+// -----------------------------------------------------------------------
+
+// Write Your Code Here
+// String.prototype.addLove = function () {
+//   return `I Love Elzero Web School`
+// }
+
+// // Do Not Edit Below
+// let myStr = "Elzero";
+// console.log(myStr.addLove()); // I Love Elzero Web School
+// ------------------------------------------------------------------------
+
+const myObj = {
+  username: "Elzero",
+  id: 100,
+  score: 1000,
+  country: "Egypt",
+};
+
+// Write Your Code Here
+Object.defineProperties(myObj,{
+score: {
+  writable: false,
+  enumerable: true,
+  configurable: true,
+  value: 1000
+  },
+id: {
+  writable: true,
+  enumerable: false,
+  configurable: true,
+  value: 1000
   }
-    
+} 
+  
+)
+
+delete myObj.country
+
+
+myObj.score = 500;
+
+for (let prop in myObj) {
+  console.log(`${prop} => ${myObj[prop]}`);
 }
 
+console.log(myObj);
 
-let user101 = new User(101, "Ali Ayman", 12000, "3liaymn")
-let user102 = new Admin(102, "Moh Ayman", 15000, "Moh", 1)
+// Needed Output
 
-// console.log(user102.id)
-// console.log(user102.name)
-console.log(user102.salery)
-console.log(user101.getSalery())
-// console.log(user102.userName)
-// console.log(user102.p)
-
+// "username => Elzero"
+// "score => 1000"
+// {username: 'Elzero', score: 1000, id: 100}
