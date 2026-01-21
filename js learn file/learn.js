@@ -139,7 +139,7 @@ console.log(parseFloat("100.22 Ali")) // بترجع رقم كسري
 console.log(Number.isInteger(100)) // بتعرفك لو هو رقم صحيح بترجع true
 console.log(Number.isNaN("Ali" / 2)) // بتشيك لو البيانات الراجعه فعلا مش ارقام
 
-//    #25  Math objevt
+//    #25  Math object
 
 // بيقرب على اساس الرقم 
 console.log(Math.round(99.2))  // لو هو أقل من النص بيجيب اقل رقم 
@@ -255,7 +255,7 @@ console.log(a.startsWith("zero", 2)); // يبدأ البحث من المكان �
 console.log(a.endsWith("l")); // يتحقق إذا كانت الكلمة تنتهي بـ
 
 
-/*   #31   Comparison Operators
+/*   #31   Comparison Operators 
   - == Equal
   - != Not Equal
 

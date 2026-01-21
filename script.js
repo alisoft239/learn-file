@@ -163,44 +163,53 @@ n$ => نهاية الفحص
 // console.log(myStr.addLove()); // I Love Elzero Web School
 // ------------------------------------------------------------------------
 
-const myObj = {
-  username: "Elzero",
-  id: 100,
-  score: 1000,
-  country: "Egypt",
-};
+// const myObj = {
+//   username: "Elzero",
+//   id: 100,
+//   score: 1000,
+//   country: "Egypt",
+// };
 
-// Write Your Code Here
-Object.defineProperties(myObj,{
-score: {
-  writable: false,
-  enumerable: true,
-  configurable: true,
-  value: 1000
-  },
-id: {
-  writable: true,
-  enumerable: false,
-  configurable: true,
-  value: 1000
-  }
-} 
+// // Write Your Code Here
+// Object.defineProperties(myObj,{
+// score: {
+//   writable: false,
+//   enumerable: true,
+//   configurable: true,
+//   value: 1000
+//   },
+// id: {
+//   writable: true,
+//   enumerable: false,
+//   configurable: true,
+//   value: 1000
+//   }
+// } 
   
-)
+// )
 
-delete myObj.country
+// delete myObj.country
 
 
-myObj.score = 500;
+// myObj.score = 500;
 
-for (let prop in myObj) {
-  console.log(`${prop} => ${myObj[prop]}`);
-}
+// for (let prop in myObj) {
+//   console.log(`${prop} => ${myObj[prop]}`);
+// }
 
-console.log(myObj);
+// console.log(myObj);
 
 // Needed Output
 
 // "username => Elzero"
 // "score => 1000"
 // {username: 'Elzero', score: 1000, id: 100}
+// --------------------------------------------
+
+
+
+console.log(Boolean(100));
+console.log(Boolean(-100));
+console.log(Boolean(0));
+console.log(Boolean(""));
+console.log(Boolean(null));
