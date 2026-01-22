@@ -209,7 +209,6 @@ btn.onclick = function () {
 // #-- Local Storage ----------------------------------112--#
 
 
-
 /*
   BOM [Browser Object Model]
   Local Storage

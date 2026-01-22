@@ -497,7 +497,7 @@ let myFrindes = ["Ahmed", "Mohammed", "sohib", "Ali"]
 
 console.log(myFriends.length)
 
-// add valuo to Array
+// add valuo to Array  
 myFrindes[myFrindes.length] =  "ayman"
 console.log(myFrindes)
 // Update last valuo 

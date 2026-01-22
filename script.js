@@ -205,11 +205,12 @@ n$ => نهاية الفحص
 // "score => 1000"
 // {username: 'Elzero', score: 1000, id: 100}
 // --------------------------------------------
+let wMapUser = { theName: "Elzero" };
+let myWeakMap = new WeakMap();
 
+myWeakMap.set(wMapUser, "Object Value");
 
+// wMapUser = null; // Override The Reference
 
-console.log(Boolean(100));
-console.log(Boolean(-100));
-console.log(Boolean(0));
-console.log(Boolean(""));
-console.log(Boolean(null));
+console.log(myWeakMap);
+console.log(Array.from("12345", (n) => +n + +n));

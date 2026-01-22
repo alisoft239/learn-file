@@ -250,7 +250,7 @@ console.log(finalObject);
 
 //  لو مفيش اي مشاريع قديمة تقدر تعمل جديد فاضي
 let newObject = Object.assign({}, obj1, { prop5: 5, prop6: 6 });
-
+// بينسخ من اول قيمة على اليمين، الترتيب بالشكل ده بس 
 console.log(newObject);
 
 
