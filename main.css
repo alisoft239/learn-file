@@ -6,4 +6,5 @@
 body {
 	background-color: black;
 	color: white;
+	min-height: 1500px;
 }
