@@ -171,8 +171,6 @@ console.log(req);
 
 
 // -------------------------Request Real API-----177----
-
-
 /*
   Ajax
   - Ready State => Status Of The Request
@@ -198,3 +196,140 @@ myRequest.onreadystatechange = function () {
     console.log(this.responseText);
   }
 };
+
+// -------------------------Loop On Data-----178----
+/*
+  Ajax
+  Loop On Data
+
+  Search
+  - Cross Origin API [CORS]
+  - API Authentication
+*/
+
+let myRequest = new XMLHttpRequest();
+myRequest.open("GET", "https://api.github.com/users/elzerowebschool/repos");
+myRequest.send();
+myRequest.onreadystatechange = function () {
+  if (this.readyState === 4 && this.status === 200) {
+    // console.log(this.responseText);
+    let jsData = JSON.parse(this.responseText);
+    // console.log(jsData);
+    for (let i = 0; i < jsData.length; i++) {
+      let div = document.createElement("div");
+      let repoName = document.createTextNode(jsData[i].full_name);
+      div.appendChild(repoName);
+      document.body.appendChild(div);
+    }
+  }
+};
+// -------------------------Promise Intro And Syntax-----180----
+/*
+  Promise Intro And Syntax
+  - Promise In JavaScript Is Like Promise In Real Life
+  - Promise Is Something That Will Happen In The Future
+  - Promise Avoid Callback Hell
+  - Promise Is The Object That Represent The Status Of An Asynchronous Operation And Its Resulting Value
+
+  - Promise Status
+  --- Pending: Initial State
+  --- Fulfilled: Completed Successfully
+  --- Rejected: Failed
+
+  Story
+  - Once A Promise Has Been Called, It Will Start In A Pending State
+  - The Created Promise Will Eventually End In A Resolved State Or In A Rejected State
+  - Calling The Callback Functions (Passed To Then And Catch) Upon Finishing.
+
+  - Then
+  --- Takes 2 Optional Arguments [Callback For Success Or Failure]
+*/
+
+// const myPromise = new Promise((resolveFunction, rejectFunction) => {
+//   let connect = false;
+//   if (connect) {
+//     resolveFunction("Connection Established");
+//   } else {
+//     rejectFunction(Error("Connection Failed"));
+//   }
+// }).then(
+//   (resolveValue) => console.log(`Good ${resolveValue}`),
+//   (rejectValue) => console.log(`Bad ${rejectValue}`)
+// );
+
+const myPromise = new Promise((resolveFunction, rejectFunction) => {
+  let connect = true;
+  if (connect) {
+    resolveFunction("Connection Established");
+  } else {
+    rejectFunction(Error("Connection Failed"));
+  }
+});
+
+console.log(myPromise);
+
+let resolver = (resolveValue) => console.log(`Good ${resolveValue}`);
+let rejecter = (rejectValue) => console.log(`Bad ${rejectValue}`);
+
+myPromise.then(resolver, rejecter);
+
+myPromise.then(
+  (resolveValue) => console.log(`Good ${resolveValue}`),
+  (rejectValue) => console.log(`Bad ${rejectValue}`)
+);
+
+mypromise.then(
+    (نجاح) => console.log(`اشطا يعم بيقولك ${نجاح}`),
+    (فشل) => console.log(`يا حوستي السودة ${فشل}`),
+)
+// -------------------------Promise, then, catch, finally-----181----
+/*
+  Promise Training
+
+  We Will Go To The Meeting, Promise Me That We Will Find The 4 Employees
+  .then(We Will Choose Two People)
+  .then(We Will Test Them Then Get One Of Them)
+  .catch(No One Came)
+
+  Then    => Promise Is Successfull Use The Resolved Data
+  Catch   => Promise Is Failed, Catch The Error
+  Finally => Promise Successfull Or Failed Finally Do Something
+*/
+
+const myPromise = new Promise((resolveFunction, rejectFunction) => {
+  let employees = [];
+  if (employees.length === 4) {
+    resolveFunction(employees);
+  } else {
+    rejectFunction(Error("Number Of Employees Is Not 4"));
+  }
+});
+// then تقدر تقبل دالة او براميتر عادي 
+myPromise
+  .then((resolveValue) => { // what u will do to result 
+    resolveValue.length = 2;
+    return resolveValue; // بترجع للي بعدها 
+  })
+  .then((resolveValue) => { // what u will do to result 
+    resolveValue.length = 1;
+    return resolveValue; 
+  })
+  .then((resolveValue) => {
+    console.log(`The Choosen Emplyee Is ${resolveValue}`); // what u will do to result 
+  })
+  .catch((rejectedReason) => console.log(rejectedReason))// error and what u  will do at this error 
+  .finally(console.log("The Operation Is Done")); // print if succecfully or not 
+
+  let mypromise = new Promise((resolverValue, rejecteValue) => {
+    let frind = [] // Data "ali", "Mo"
+    if(frind.length > 0)
+    {
+        resolverValue(frind);
+    }else{
+        rejecteValue(Error("No Frinds Gome"))
+    }
+}).then((frind) => { // what u will do to result 
+    console.log(frind)
+}).catch((error) => { // error and what u  will do at this error 
+    console.log(error)
+}).finally(console.log("OK")) // print if succecfully or not 
