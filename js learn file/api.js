@@ -333,3 +333,213 @@ myPromise
 }).catch((error) => { // error and what u  will do at this error 
     console.log(error)
 }).finally(console.log("OK")) // print if succecfully or not 
+
+// -------------------------Promise and XHR-----182----
+/*
+  Promise And XHR
+*/
+
+const getData = (apiLink) => {
+  return new Promise((resolve, reject) => {
+    let myRequest = new XMLHttpRequest();
+    myRequest.onload = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        resolve(JSON.parse(this.responseText));
+      } else {
+        reject(Error("No Data Found"));
+      }
+    };
+
+    myRequest.open("GET", apiLink);
+    myRequest.send();
+  });
+};
+
+getData("https://api.github.com/users/elzerowebschool/repos")
+  .then((result) => {
+    result.length = 10;
+    return result;
+  })
+  .then((result) => console.log(result[0].name))
+  .catch((rej) => console.log(rej));
+
+// -------------------------Promise and XHR----------------183------------
+  /*
+  Fetch API
+  - Return A Representation Of the Entire HTTP Response
+*/
+
+fetch("https://api.github.com/users/elzerowebschool/repos")
+  .then((result) => {
+    console.log(result);
+    let myData = result.json();
+    console.log(myData);
+    return myData;
+  })
+  .then((full) => {
+    full.length = 10;
+    return full;
+  })
+  .then((ten) => {
+    console.log(ten[0].name);
+  });
+
+// -------------------------Promise all - allsettled - race----------------184------------
+  /*
+  Promise
+  - All بيستنى كله ينجح ، لو واحد فشل كله يفشل
+  - All Settled بيرجع اللي نجح و فشل
+  - Race بيرجع اول واحد يقابله
+*/
+
+const myFirstPromise = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("Iam The First Promise");
+  }, 5000);
+});
+
+const mySecondPromise = new Promise((res, rej) => {
+  setTimeout(() => {
+    rej("Iam The Second Promise");
+  }, 1000);
+});
+
+const myThirdPromise = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("Iam The Third Promise");
+  }, 2000);
+});
+
+// Promise.all([myFirstPromise, mySecondPromise, myThirdPromise]).then(
+//   (resolvedValues) => console.log(resolvedValues),
+//   (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
+// );
+
+// Promise.allSettled([myFirstPromise, mySecondPromise, myThirdPromise]).then(
+//   (resolvedValues) => console.log(resolvedValues),
+//   (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
+// );
+
+Promise.race([myFirstPromise, mySecondPromise, myThirdPromise]).then(
+  (resolvedValues) => console.log(resolvedValues),
+  (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
+);
+
+// -------------------------Async----------------185------------
+/*
+  Async
+  - Async Before Function Mean This Function Return A Promise
+  - Async And Await Help In Creating Asynchronous Promise Behavior With Cleaner Style
+*/
+
+// function getData() {
+//   return new Promise((res, rej) => {
+//     let users = [];
+//     if (users.length > 0) {
+//       res("Users Found");
+//     } else {
+//       rej("No Users Found");
+//     }
+//   });
+// }
+
+// getData().then(
+//   (resolvedValue) => console.log(resolvedValue),
+//   (rejectedValue) => console.log("Rejected " + rejectedValue)
+// );
+
+// function getData() {
+//   let users = ["Osama"];
+//   if (users.length > 0) {
+//     return Promise.resolve("Users Found");
+//   } else {
+//     return Promise.reject("No Users Found");
+//   }
+// }
+
+// getData().then(
+//   (resolvedValue) => console.log(resolvedValue),
+//   (rejectedValue) => console.log("Rejected " + rejectedValue)
+// );
+
+async function getData() {
+  let users = [];
+  if (users.length > 0) {
+    return "Users Found";
+  } else {
+    throw new Error("No Users Found");
+  }
+}
+
+console.log(getData());
+
+getData().then(
+  (resolvedValue) => console.log(resolvedValue),
+  (rejectedValue) => console.log("Rejected " + rejectedValue)
+);
+
+// -------------------------Await----------------186------------
+/*
+  Await
+  - Await Works Only Inside Asnyc Functions
+  - Await Make JavaScript Wait For The Promise Result
+  - Await Is More Elegant Syntax Of Getting Promise Result
+*/
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // resolve("Iam The Good Promise");
+    reject(Error("Iam The Bad Promise"));
+  }, 3000);
+});
+
+async function readData() {
+  console.log("Before Promise");
+  // myPromise.then((resolvedValue) => console.log(resolvedValue));
+  // console.log(await myPromise);
+  console.log(await myPromise.catch((err) => err));
+  console.log("After Promise");
+}
+
+readData();
+// -------------------------Try, Catch, Finally----------------187------------
+
+/*
+  Async & Await With Try, Catch, Finally
+*/
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Iam The Good Promise");
+  }, 3000);
+});
+
+// async function readData() {
+//   console.log("Before Promise");
+//   try {
+//     console.log(await myPromise);
+//   } catch (reason) {
+//     console.log(`Reason: ${reason}`);
+//   } finally {
+//     console.log("After Promise");
+//   }
+// }
+
+// readData();
+
+// "https://api.github.com/users/elzerowebschool/repos"
+
+async function fetchData() {
+  console.log("Before Fetch");
+  try {
+    let myData = await fetch("https://api.github.com/users/elzerowebschool/repos");
+    console.log(await myData.json());
+  } catch (reason) {
+    console.log(`Reason: ${reason}`);
+  } finally {
+    console.log("After Fetch");
+  }
+}
+
+fetchData();
+

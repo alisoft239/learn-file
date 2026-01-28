@@ -1,10 +1,13 @@
 
 /* .container .col{
 	background-color: rgb(255, 164, 44);
-	
 } */
 body {
 	background-color: black;
 	color: white;
 	min-height: 1500px;
+	display: flex;
+	justify-content: center;
+	align-items: top;
+	margin-top: 50px;
 }
